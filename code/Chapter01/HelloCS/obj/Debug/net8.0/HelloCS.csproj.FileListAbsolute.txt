@@ -1,0 +1,15 @@
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\bin\Debug\net8.0\HelloCS.exe
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\bin\Debug\net8.0\HelloCS.deps.json
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\bin\Debug\net8.0\HelloCS.runtimeconfig.json
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\bin\Debug\net8.0\HelloCS.dll
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\bin\Debug\net8.0\HelloCS.pdb
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.GeneratedMSBuildEditorConfig.editorconfig
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.AssemblyInfoInputs.cache
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.AssemblyInfo.cs
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.csproj.CoreCompileInputs.cache
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.sourcelink.json
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.dll
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\refint\HelloCS.dll
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.pdb
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\HelloCS.genruntimeconfig.cache
+D:\VS Code Testing\cs12dotnet8\code\Chapter01\HelloCS\obj\Debug\net8.0\ref\HelloCS.dll
