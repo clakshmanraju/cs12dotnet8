@@ -1,21 +1,25 @@
-**Improvements** (8 items)
+**Improvements** (14 items)
 
 If you have suggestions for improvements, then please [raise an issue in this repository](https://github.com/markjprice/cs12dotnet8/issues) or email me at markjprice (at) gmail.com.
 
-- [Print Book](#print-book)
-  - [Page 64 - Formatting code using white space](#page-64---formatting-code-using-white-space)
-  - [Page 79 - Raw interpolated string literals](#page-79---raw-interpolated-string-literals)
-  - [Page 87 - Comparing double and decimal types](#page-87---comparing-double-and-decimal-types)
-  - [Page 96 - Formatting using numbered positional arguments \& Formatting using interpolated strings](#page-96---formatting-using-numbered-positional-arguments--formatting-using-interpolated-strings)
-  - [Page 131 - Pattern matching with the switch statement](#page-131---pattern-matching-with-the-switch-statement)
-  - [Page 248 - Storing multiple values using an enum type](#page-248---storing-multiple-values-using-an-enum-type)
-  - [Page 369 - Understanding .NET components](#page-369---understanding-net-components)
-  - [Page 484 - Compressing streams](#page-484---compressing-streams)
-- [Bonus Content](#bonus-content)
+- [Page 64 - Formatting code using white space](#page-64---formatting-code-using-white-space)
+- [Page 79 - Raw interpolated string literals](#page-79---raw-interpolated-string-literals)
+- [Page 87 - Comparing double and decimal types](#page-87---comparing-double-and-decimal-types)
+- [Page 96 - Formatting using numbered positional arguments \& Formatting using interpolated strings](#page-96---formatting-using-numbered-positional-arguments--formatting-using-interpolated-strings)
+- [Page 131 - Pattern matching with the switch statement](#page-131---pattern-matching-with-the-switch-statement)
+- [Page 144 - List pattern matching with arrays](#page-144---list-pattern-matching-with-arrays)
+- [Page 248 - Storing multiple values using an enum type](#page-248---storing-multiple-values-using-an-enum-type)
+- [Page 369 - Understanding .NET components](#page-369---understanding-net-components)
+- [Page 426 - Comparing string values](#page-426---comparing-string-values)
+- [Page 457 - Initializing collections using collection expressions](#page-457---initializing-collections-using-collection-expressions)
+  - [Using the spread element](#using-the-spread-element)
+  - [Collection expression limitations](#collection-expression-limitations)
+- [Page 460 - Identifying ranges with the Range type](#page-460---identifying-ranges-with-the-range-type)
+- [Page 484 - Compressing streams](#page-484---compressing-streams)
+- [Page 493 - Serializing as XML](#page-493---serializing-as-xml)
+- [Page 541 - Querying EF Core models](#page-541---querying-ef-core-models)
 
-# Print Book
-
-## Page 64 - Formatting code using white space
+# Page 64 - Formatting code using white space
 
 In this section, I show code examples of white space.
 
@@ -36,7 +40,7 @@ Unless a step-by-step instruction tells the reader to enter code, all code examp
 
 In the next edition, I will explicitly say that, and explain that if the reader does decide to enter the code, they would (of course) need to rename the variables. 
 
-## Page 79 - Raw interpolated string literals
+# Page 79 - Raw interpolated string literals
 
 > Thanks to [Robin](https://github.com/centpede) who raised this [issue on December 11, 2023](https://github.com/markjprice/cs12dotnet8/issues/6).
 
@@ -89,7 +93,7 @@ Now it produces the following output:
 ```
 In the next edition, I will add this extra explanation.
 
-## Page 87 - Comparing double and decimal types
+# Page 87 - Comparing double and decimal types
 
 > Thanks to Yousef Imran who raised this issue via email on December 15, 2023.
 
@@ -99,6 +103,8 @@ In the next edition, I will add an example to show the values and how they can b
 ```cs
 #region Special float and double values
 
+Console.WriteLine($"double.Epsilon: {double.Epsilon}");
+Console.WriteLine($"double.Epsilon to 324 decimal places: {double.Epsilon:N324}");
 Console.WriteLine($"double.Epsilon to 330 decimal places: {double.Epsilon:N330}");
 
 const int col1 = 37; // First column width.
@@ -126,6 +132,8 @@ Console.WriteLine(line);
 
 When you run the code the results are as shown in the following output:
 ```
+double.Epsilon: 5E-324
+double.Epsilon to 324 decimal places: 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005
 double.Epsilon to 330 decimal places: 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004940656
 ----------------------------------------------
 Expression                            |  Value
@@ -150,9 +158,9 @@ Note the following:
 - `NegativeInfinity` value outputs as a `-8` which looks like an infinity symbol on its side with a negative sign before it. It can be generated from an expression of any negative real number divided by zero.
 - Zero divided by any positive real number is zero.
 - Zero divided by any negative real number is negative zero.
-- `Epsilon` is `0.000...0005` with 323 zeros before the `5`.
+- `Epsilon` is slightly less than `5E-324` represented using scientific notation: https://en.wikipedia.org/wiki/Scientific_notation.
 
-## Page 96 - Formatting using numbered positional arguments & Formatting using interpolated strings
+# Page 96 - Formatting using numbered positional arguments & Formatting using interpolated strings
 
 > Thanks to [Robin](https://github.com/centpede) who raised this [issue on December 15, 2023](https://github.com/markjprice/cs12dotnet8/issues/7).
 
@@ -214,25 +222,139 @@ And I will change the output to show dollars, of course.
 
 I will also add a note to tell readers that in *Chapter 4* they will learn how to write a function to control the culture so that they can see (1) US English by default, (2) local computer culture, (3) a specified culture. Hopefully this improvement will be the best of all worlds.
 
-## Page 131 - Pattern matching with the switch statement
+# Page 131 - Pattern matching with the switch statement
 
 > Thanks to Yousef Imran who raised this issue via email.
 
-In Step 2, I tell the reader to create an `Spider` class with a field named `IsPoisonous`. The field would be better named `IsVenomous` because poison is a thing that you consume and venom is transmitted by an animal bite. One way to remember the difference is that the villain from Spider-man is named Venom rather name Poison.
+In Step 2, I tell the reader to create an `Spider` class with a field named `IsPoisonous`. The field would be better named `IsVenomous` because poison is a thing that you consume and venom is transmitted by an animal bite. One way to remember the difference is that the villain from Spider-man is named Venom instead of Poison.
 
-In the next edition, I will change the field name.
+In the next edition, I will change the field name to `IsVenomous`.
 
-## Page 248 - Storing multiple values using an enum type
+# Page 144 - List pattern matching with arrays
+
+> Thanks to [Vlad Alexandru Meici](https://github.com/vladmeici) who raised this [issue on January 20, 2024].
+
+On page 446, I have a note about C# allowing trailing commas, "The trailing commas after the third item is added to the dictionary are optional and the compiler will not complain about them. This is convenient so that you can change the order of the three items without having to delete and add commas in the right places."
+
+But that is not the first time in the book that I use trailing commas. On page 144, I wrote a switch expression that uses a trailing comma, as shown in the following code:
+```cs
+static string CheckSwitch(int[] values) => values switch
+{
+  [] => "Empty array",
+  [1, 2, _, 10] => "Contains 1, 2, any single number, 10.",
+  [1, 2, .., 10] => "Contains 1, 2, any range including empty, 10.",
+  [1, 2] => "Contains 1 then 2.",
+  [int item1, int item2, int item3] => $"Contains {item1} then {item2} then {item3}.",
+  [0, _] => "Starts with 0, then one other number.",
+  [0, ..] => "Starts with 0, then any range of numbers.",
+  [2, .. int[] others] => $"Starts with 2, then {others.Length} more numbers.",
+  [..] => "Any items in any order.", // <-- Note the trailing comma.
+};
+```
+
+Most languages, including C#, allow the code style of trailing commas. When multiple items are separated by the comma, for example, when declaring an anonymous object, an array, collection initializers, enums, and switch expressions, C# allows you to have the trailing comma after the last item. This makes it easy to rearrange the order without having to keep adding and removing commas.
+
+Here is the discussion about allowing trailing commas for switch expressions back in 2018: dotnet/csharplang#2098
+
+Even JSON serializers have an option to allow this because it is so common to use.
+https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializeroptions.allowtrailingcommas
+
+In the next edition, I will move the note earlier in the book to when I first use the technique.
+
+# Page 248 - Storing multiple values using an enum type
 
 In the **Good Practice** box, I will list the integer types that an `enum` is allowed to inherit from: `Byte`, `SByte`, `Int16`, `Int32`, `Int64`, `UInt16`, `UInt32`, `UInt64`. The new integer types `Int128` and `UInt128` are not supported.
 
-## Page 369 - Understanding .NET components
+# Page 369 - Understanding .NET components
 
 > Thanks to Saeed Fathi who emailed this suggestion to me on December 6, 2023.
 
 I used the term "CoreFX" which is an old term for what is now better known as `dotnet/runtime`. In future editions, I will remove that term.
 
-## Page 484 - Compressing streams
+# Page 426 - Comparing string values
+
+> Thanks to **f6a4** in the book's Discord channel for suggesting this improvement.
+
+In the introduction to this section, I describe the theory of comparing string values and how they are culture-dependent, including examples from Swedish and German like the word for *street*, `Straße` and `Strasse`. 
+
+In Step 2, the reader enters code to compare two string values: `Mark` and `MARK`, both exact comparison and case-insensitive. 
+
+In the next edition, I will add code to compare two string values in German culture: `Straße` and `Strasse`, both exact comparison and case-insensitive, as shown in the following code:
+```cs
+// German string comparisons
+
+CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
+
+text1 = "Strasse";
+text2 = "Straße";
+
+WriteLine($"text1: {text1}, text2: {text2}");
+
+WriteLine("Compare: {0}.", string.Compare(text1, text2, 
+  CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace));
+
+WriteLine("Compare (IgnoreCase, IgnoreNonSpace): {0}.",
+  string.Compare(text1, text2, CultureInfo.CurrentCulture, 
+  CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase));
+
+WriteLine("Compare (InvariantCultureIgnoreCase): {0}.",
+  string.Compare(text1, text2,
+  StringComparison.InvariantCultureIgnoreCase));
+```
+
+I have also added this example to the current edition solution code here:
+https://github.com/markjprice/cs12dotnet8/blob/0ee475706186d2c82fdb836837783aed3a4d4fd0/code/Chapter08/WorkingWithText/Program.cs#L78
+
+# Page 457 - Initializing collections using collection expressions
+
+In this section, I introduce the use of collection expressions to initialize collections. A related feature is the `..` spread element. In the next edition, I will add a section about it, as shown below.
+
+## Using the spread element
+
+> Microsoft official documentation uses both **spread element** and **spread operator** to refer to the same language feature. I prefer *element* because it is used in collection expressions to represent an element within the defined collection.
+
+The spread element `..` can be prefixed before any expression that can be enumerated to evaluate it in a collection expression. For example, any type that can be enumerated using `foreach`, like an array or collection, can be evaluated using the spread element. The use of the spread element `..` in a collection expression replaces its argument with the elements from that collection. You can combine spread elements with individual elements in a collection expression.
+
+For example:
+```cs
+int[] row0 = [1, 2, 3];
+int[] row1 = [4, 5];
+int[] row2 = [6, 7, 8, 9];
+
+// Use the spread element to combine the three arrays and an integer into one array.
+int[] combinedRows = [..row0, ..row1, ..row2, 10];
+
+foreach (int number in combinedRows)
+{
+  Console.Write($"{number}, ");
+}
+```
+
+The output would be:
+```
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+```
+
+> **More Information**: You can learn more about the spread element at the following link: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/collection-expressions#spread-element.
+
+## Collection expression limitations
+
+Collection expressions do not work with all collections. For example, they do not work with dictionaries or multi-dimensional arrays. The documenation lists the types that a collection expression can be converted to: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-12.0/collection-expressions#conversions.
+
+> **Warning!** Be careful not to confuse the spread element `..` that must be applied before an enumerable expression, with the range operator `..` that is used to define a `Range`. There is a discussion about the design decision around the spread element at the following link: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-12.0/collection-expressions#drawbacks.
+
+# Page 460 - Identifying ranges with the Range type
+
+In this section, I introduce ways to define a `Range`, including the range operator `..` available in C# 8 or later, as shown in the following code:
+```cs
+Range r3 = 3..7; // Using C# 8.0 or later syntax.
+Range r5 = 3..; // From index 3 to last index.
+Range r7 = ..3; // From index 0 to index 3.
+```
+
+In the next edition, I will add a note to warn the reader that the spread element `..` looks the same but means something different and refer back to it in a  new section explaining the spread element. 
+
+# Page 484 - Compressing streams
 
 > Thanks to [DrAvriLev](https://github.com/DrAvriLev) who raised this [issue on November 26, 2023](https://github.com/markjprice/cs12dotnet8/issues/4).
 
@@ -333,6 +455,70 @@ In the following code, `using (XmlReader reader = XmlReader.Create(decompressor)
 
 I will also explain why I did not use the simplified syntax with the `compressor` object (to dispose of it earlier).
 
-# Bonus Content 
+# Page 493 - Serializing as XML
 
-None so far.
+> Thanks to [Robin Bastian](https://github.com/centpede) for raising this issue on [January 12, 2024](https://github.com/markjprice/cs12dotnet8/issues/11).
+
+In Step 2, I wrote, "In the project file, add elements to statically and globally import the `System.Console`, `System.Environment`, and `System.IO.Path` classes."
+
+Some readers do not notice that they need to statically import `System.Environment` so in the next edition I will write, "In the project file, add elements to statically and globally import the `System.Console` (to use `ForegroundColor` and `WriteLine`), `System.Environment` (to use `CurrentDirectory`), and `System.IO.Path` classes (to use `Combine`, `GetFileName`, and `GetDirectoryName`)."
+
+# Page 541 - Querying EF Core models
+
+> Thanks to **swissbobo** in this book's Discord channel for asking a question that prompted this improvement.
+
+At the start of this section, I wrote, "Now that we have a model that maps to the Northwind database and two of its tables, we can write some simple LINQ queries to fetch data. You will learn much more about writing LINQ queries in *Chapter 11, Querying and Manipulating Data Using LINQ*. For now, just write the code and view the results:"
+
+Instead of just warning that the reader will learn more about LINQ queries in the next chapter, it would probably be better for the reader if some of the key behaviors of LINQ are made at various points throughout this section. In the next edition, I will make the following improvements...
+
+On page 541, I will add the following note:
+
+> **LINQ to Entities** (aka **LINQ to EF Core**) is a LINQ provider that converts a LINQ query into SQL to execute against the database. You can write a LINQ query built up over many C# statements. You can discover the equivalent SQL statement without executing the query against the database by calling `ToQueryString`. This is known as **deferred execution**. Only when the query is enumerated using `foreach`, or you call a method like `ToArray` or `ToList` on the LINQ query, will you trigger executing the query against the database and the results are returned to your code. This is known as **materialization**.
+
+On page 545, in the code, I will add some comments, as shown in the following code:
+```cs
+// This is a query definition. Nothing has executed against the database.
+IQueryable<Category>? categories = db.Categories?
+  .Include(c => c.Products.Where(p => p.Stock >= stock));
+
+// You could call any of the following LINQ methods and nothing will be executed against the database:
+// Where, GroupBy, Select, SelectMany, OfType, OrderBy, ThenBy, Join, GroupJoin, Take, Skip, Reverse.
+// Usually, methods that return IEnumerable or IQueryable support deferred execution.
+// Usually, methods that return a single value do not support deferred execution.
+
+if (categories is null || !categories.Any())
+{
+  Fail("No categories found.");
+  return;
+}
+
+// Enumerating the query converts it to SQL and executes it against the database.
+foreach (Category c in categories)
+```
+
+On page 548, in the code for step 1, I will add some comments, as shown in the following code:
+```cs
+// Calling ToQueryString does not execute against the database. 
+// LINQ to Entities just converts the LINQ query to an SQL statement.
+Info($"ToQueryString: {categories.ToQueryString()}");
+```
+
+> **Warning!** The `ToQueryString` can only work on objects that implement `IQueryable`. This means that if you write a LINQ query using deferred methods like `Where`, `GroupBy`, `Select`, `OrderBy`, `Join`, `Take`, `Skip`, `Reverse` and so on then `ToQueryString` can show you the SQL before you run the query. But methods that return a non-`IQueryable` value and immediately execute the query, like a single scalar result like `Count()` or `First()`, do not support `ToQueryString`. 
+
+On page 549, I will add a note:
+
+> **Warning!** Enabling of logging for EF Core shows all of the SQL commands that are actually executed against the database. `ToQueryString` does *not* execute against the database.
+
+On page 553, in the code for step 1, I will add some comments, as shown in the following code:
+```cs
+// This query is not deferred because the First method does not return IEnumerable or IQueryable.
+// The LINQ query is immediately converted to SQL and executed to fetch the first product.
+Product? product = db.Products?
+  .First(product => product.ProductId == id);
+```
+
+On page 553, before step 2, I will add a note:
+
+> LINQ methods that fetch a single entity (`First`, `FirstOrDefault`, `Single`, `SingleOrDefault`, `ElementAt`, `ElementAtOrDefault`) or return a single scalar value or entity like the aggregate methods (`Count`, `Sum`, `Max`, `Min`, `Average`, `All`, `Any`, and so on) are not deferred. When using the LINQ to Entities provider, any LINQ query that ends with a call to one of these methods is immediately converted to a SQL statement and executed against the database.
+
+On pages 583 to 584, I will split the table of LINQ methods into deferred and non-deferred methods. 

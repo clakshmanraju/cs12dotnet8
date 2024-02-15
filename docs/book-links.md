@@ -450,7 +450,7 @@ The official announcement links are useful because they describe the most import
 - [Tutorial: Create an item template](https://learn.microsoft.com/en-us/dotnet/core/tutorials/cli-templates-create-item-template)
 
 ## Packaging and publishing
-- [PDB files](https://www.wintellect.com/pdb-files-what-every-developer-must-know/)
+- [PDB files](https://www.atmosera.com/blog/pdb-files-what-every-developer-must-know/)
 - [The PackageReference format](https://learn.microsoft.com/en-us/nuget/reference/msbuild-targets)
 - [NuGet packages](https://www.nuget.org/packages)
 - [Announcing NuGet 6.0](https://devblogs.microsoft.com/nuget/announcing-nuget-6/)
@@ -467,6 +467,7 @@ The official announcement links are useful because they describe the most import
 - [Native AOT deployment](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/)
 - [How to make libraries compatible with native AOT](https://devblogs.microsoft.com/dotnet/creating-aot-compatible-libraries/)
 - [ASP.NET Core support for native AOT](https://devblogs.microsoft.com/dotnet/announcing-asp-net-core-in-dotnet-8/#asp-net-core-support-for-native-aot)
+- [How to make libraries compatible with native AOT](https://devblogs.microsoft.com/dotnet/creating-aot-compatible-libraries/)
 
 ## Porting from .NET Framework to modern .NET
 - [Overview of porting from .NET Framework to .NET Core](https://learn.microsoft.com/en-us/dotnet/core/porting/)
@@ -742,6 +743,8 @@ The official announcement links are useful because they describe the most import
 - [How Polly can make your web services more reliable](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly)
 - [Use HttpClientFactory to implement resilient HTTP requests](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
 - [Redis](https://redis.io)
+- [Resilience and chaos engineering](https://devblogs.microsoft.com/dotnet/resilience-and-chaos-engineering/)
+- [Dev Tunnels: A Game Changer for Mobile Developers](https://devblogs.microsoft.com/dotnet/dev-tunnels-a-game-changer-for-mobile-developers/)
 
 # Chapter 15 - Building User Interfaces Using Blazor
 
