@@ -1,4 +1,4 @@
-**Errata** (13 items)
+**Errata** (26 items)
 
 If you find any mistakes, then please [raise an issue in this repository](https://github.com/markjprice/cs12dotnet8/issues) or email me at markjprice (at) gmail.com.
 
@@ -6,15 +6,28 @@ If you find any mistakes, then please [raise an issue in this repository](https:
 - [Page 15 - Understanding .NET runtime and .NET SDK versions](#page-15---understanding-net-runtime-and-net-sdk-versions)
 - [Page 43 - Configuring inline aka inlay hints](#page-43---configuring-inline-aka-inlay-hints)
 - [Page 50 - Exercise 1.2 – Practice C# anywhere with a browser](#page-50---exercise-12--practice-c-anywhere-with-a-browser)
+- [Page 51 - Exercise 1.5 – Explore themes of modern .NET](#page-51---exercise-15--explore-themes-of-modern-net)
+- [Page 54 - Understanding C# standards](#page-54---understanding-c-standards)
 - [Page 58 - Showing the compiler version](#page-58---showing-the-compiler-version)
+- [Page 65 - Comparing programming languages to human languages](#page-65---comparing-programming-languages-to-human-languages)
 - [Page 87 - Comparing double and decimal types](#page-87---comparing-double-and-decimal-types)
 - [Page 95 - Displaying output to the user](#page-95---displaying-output-to-the-user)
 - [Page 124 - Exploring bitwise and binary shift operators](#page-124---exploring-bitwise-and-binary-shift-operators)
+- [Page 261 - Passing optional parameters](#page-261---passing-optional-parameters)
+- [Page 316 - Comparing objects when sorting](#page-316---comparing-objects-when-sorting)
 - [Page 361 - Comparing inheritance and implementation](#page-361---comparing-inheritance-and-implementation)
 - [Page 383 - Creating a console app to publish](#page-383---creating-a-console-app-to-publish)
 - [Page 386 - Publishing a self-contained app](#page-386---publishing-a-self-contained-app)
+- [Page 421 - Generating GUIDs](#page-421---generating-guids)
+- [Page 522 - Using the lightweight ADO.NET database providers](#page-522---using-the-lightweight-adonet-database-providers)
+- [Page 548 - Getting the generated SQL](#page-548---getting-the-generated-sql)
+- [Page 553 - Getting a single entity](#page-553---getting-a-single-entity)
 - [Page 616 - Be careful with Count!](#page-616---be-careful-with-count)
 - [Page 641 - Customizing the model and defining an extension method](#page-641---customizing-the-model-and-defining-an-extension-method)
+- [Page 684 - Defining a form to insert a new supplier](#page-684---defining-a-form-to-insert-a-new-supplier)
+- [Page 694 - Exercise 13.3 – Enabling HTTP/3 and request decompression support](#page-694---exercise-133--enabling-http3-and-request-decompression-support)
+- [Page 714 - Route constraints](#page-714---route-constraints)
+- [Appendix - Page 1 - Exercise 1.1 – Test your knowledge](#appendix---page-1---exercise-11--test-your-knowledge)
 
 # Page 10 - Installing other extensions
 
@@ -53,9 +66,31 @@ Although **Visual Studio Code for Web** does support some extensions, it does no
 
 In the next edition, I will remove this bullet or change it to **GitHub Codespaces** (i.e. Visual Studio Code hosted in a cloud-based virtual machine) instead.
 
+# Page 51 - Exercise 1.5 – Explore themes of modern .NET
+
+> Thanks to [Emre Duman](https://github.com/Emopusta) who raised this [issue on March 11, 2024](https://github.com/markjprice/cs12dotnet8/issues/25).
+
+Microsoft appears to have stopped paying for the domain used by the following link: https://themesof.net/. In the next edition, I will remove this exercise. 
+
+# Page 54 - Understanding C# standards
+
+> Thanks to [mark23344](https://github.com/mark23344) who raised this [issue on May 10, 2024](https://github.com/markjprice/cs12dotnet8/issues/36).
+
+In the note box, I put a link to the C# specifications: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/specifications. But Microsoft changed the link without an automatic redirect so that link now returns a 404. 
+
+The new link is: https://learn.microsoft.com/en-us/dotnet/csharp/specification/.
+
 # Page 58 - Showing the compiler version
 
 In Step 3, the code should have been styled as `Code` (monospace black-on-light-gray text) instead of `Command Line` (monospace white-on-black).
+
+# Page 65 - Comparing programming languages to human languages
+
+> Thanks to [zaynchoudry](https://github.com/zaynchoudry) who raised this [issue on April 14, 2024](https://github.com/markjprice/cs12dotnet8/issues/34).
+
+I wrote, "this YouTube video shows a demonstration of an Arabic programming language: https://youtu.be/dkO8cdwf6v8."
+
+That video has been removed. An alternative is available at the following link: https://www.youtube.com/watch?v=EwYIZBL4sAU.
 
 # Page 87 - Comparing double and decimal types
 
@@ -112,6 +147,37 @@ In the last paragraph, I wrote, "The `3` result is because the 1 bits in `b` wer
 
 I should have written, "The `3` result is because the 1 bits in `y` were shifted one column into the 2-and 1-bit columns."
 
+# Page 261 - Passing optional parameters
+
+> Thanks to [Vlad Alexandru Meici](https://github.com/vladmeici) for raising [this issue on March 18, 2024](https://github.com/markjprice/cs12dotnet8/issues/28).
+
+In Step 1, the method signature has an extra space between `command` and `=`, as shown in the following code:
+```cs
+public string OptionalParameters(string command  = "Run!",
+```
+
+Although extra whitespace has no effect on the compiler, in the next edition, I will remove the extra space, as shown in the following code:
+```cs
+public string OptionalParameters(string command = "Run!",
+```
+
+# Page 316 - Comparing objects when sorting
+
+> Thanks to **Ashish** in the Discord channel for this book for raising this issue.
+
+In Step 9, the final `else` statement will never execute because the logic of the `if` and `else if` clauses mean it will only execute when `this` (the current object instance) is `null`. In that scenario, the method could not execute anyway since the object wouldn't exist! When I wrote the `if` statement, I exhaustively covered all combinations of `null` and `not null` for `other` and `this`, but one of those combinations could never in practice happen. 
+
+In the next edition, I will delete the following code from the `CompareTo` method:
+```cs
+else
+{
+  position = 0; // this and other are at same position.
+}
+```
+
+And I will add a comment in the code explaining why it is not needed. I have already done this in the code solution here:
+https://github.com/markjprice/cs12dotnet8/blob/main/code/Chapter06/PacktLibrary/Person.cs#L196
+
 # Page 361 - Comparing inheritance and implementation
 
 > Thanks to Blix in this book's Discord channel for pointing out this typo.
@@ -166,6 +232,65 @@ dotnet publish -c Release -r osx-arm64 --self-contained
 
 I have updated the **Command Lines** summary file to use the new valid RIDs: https://github.com/markjprice/cs12dotnet8/blob/main/docs/command-lines.md#page-386---publishing-a-self-contained-app
 
+# Page 421 - Generating GUIDs
+
+> Thanks to [Cem Kaya](https://github.com/cmkaya) for raising this issue on [March 20, 2024](https://github.com/markjprice/cs12dotnet8/issues/31).
+
+In Step 1, I wrote, "In `Program.cs`, add statements to access the shared `Random` instance, and then call its methods
+to generate random numbers, as shown in the following code:" 
+
+This should have been, "In `Program.cs`, add statements to output the value of an empty `Guid`, generate a new random `Guid` and then output its value, and finally output each individual byte of the random `Guid` value, as shown in the following code:".
+
+# Page 522 - Using the lightweight ADO.NET database providers
+
+> Thanks to `blix11` in the book's Discord channel for raising this issue.
+
+In the fourth paragraph I wrote, "The EF Core database providers for SQLite and SQL Server are built on top of the ADO.NET libraries, so EF Core is always inherently slower than ADO.NET. Furthermore, ADO.NET can be used independently
+for better performance because the EF Core database providers are “closer to the metal.”"
+
+The second sentence is confusing or just wrong, and I probably meant to write, "Furthermore, ADO.NET can be used independently which will give better performance because the ADO.NET database providers are “closer to the metal.”". But even then the sentence doesn't add much so in the next edition I will remove that sentence.
+
+# Page 548 - Getting the generated SQL
+
+> Thanks to `Ashish` in the book's Discord channel for raising this issue.
+
+In Step 1, I wrote, "In the `FilteredIncludes` method" and in the GitHub solution code I do the same thing. Originally this was so that later you could see what happens when you run that method. But I'm not sure if this is necessary now because in the next section I get the reader to enable logging of SQL queries globally. It's also confusing because it happens to use a variable named `categories` so a reader might think I meant to add the statement to the `QueryCategories` method but this is not necessary. For the next edition, I might just remove this step. 
+
+In Step 3, I wrote, "Run the code, enter a minimum value for units in stock, like `99`, and view the result," but the output shows I entered `95`. In the next edition I will change the text to also say `95`.
+
+# Page 553 - Getting a single entity
+
+> Thanks to `Ashish` in the book's Discord channel for raising this issue.
+
+In Step 3, I show output of the logged SQL which includes `WHERE NOT ("p"."Discontinued") AND "p"."ProductId" > @__id_0`. But I do not tell the reader to add a global filter that would add the `NOT ("p"."Discontinued")` clause to the `WHERE` until the **Defining global filters** section on page 557.
+
+In the next edition, I will edit the output to remove this SQL clause, as shown in the following output:
+```
+Enter a product ID: 1
+Connection: Data Source=C:\cs12dotnet8\Chapter10\WorkingWithEFCore\bin\
+Debug\net8.0\Northwind.db
+dbug: 9/17/2023 18:04:14.210 RelationalEventId.CommandExecuting[20100]
+(Microsoft.EntityFrameworkCore.Database.Command)
+    Executing DbCommand [Parameters=[@__id_0='1'], CommandType='Text',
+CommandTimeout='30']
+    SELECT "p"."ProductId", "p"."CategoryId", "p"."UnitPrice",
+"p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."ProductId" > @__id_0
+    LIMIT 1
+Info > First: Chang
+dbug: 9/17/2023 18:04:14.286 RelationalEventId.CommandExecuting[20100]
+(Microsoft.EntityFrameworkCore.Database.Command)
+    Executing DbCommand [Parameters=[@__id_0='1'], CommandType='Text',
+CommandTimeout='30']
+    SELECT "p"."ProductId", "p"."CategoryId", "p"."UnitPrice",
+"p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."ProductId" > @__id_0
+    LIMIT 2
+Info > Single: Chang
+```
+
 # Page 616 - Be careful with Count!
 
 > Thanks to Clint Mayers who submitted this issue via email.
@@ -219,3 +344,83 @@ services.AddDbContext<NorthwindContext>(options =>
 ```
 
 This is only a problem in the source code in the print book and PDF, not in the GitHub repository, as shown in the following statement: https://github.com/markjprice/cs12dotnet8/blob/de8310d8aaf82510a759e196566d111c4c839c57/code/PracticalApps/Northwind.DataContext.Sqlite/NorthwindContextExtensions.cs#L33
+
+# Page 684 - Defining a form to insert a new supplier
+
+> Thanks to [zhangjinshan1990](https://github.com/zhangjinshan1990) for raising this [issue on May 18, 2024](https://github.com/markjprice/cs10dotnet6/issues/128) in the C# 10 and .NET 6 repository.
+
+In Step 2, you bind HTML three `<input>` elements to properties of `Supplier`, as shown in the following markup:
+```xml
+<form method="POST">
+  <div>
+    <input asp-for="Supplier.CompanyName"
+            placeholder="Company Name" />
+  </div>
+  <div>
+    <input asp-for="Supplier.Country"
+            placeholder="Country" />
+  </div>
+  <div>
+    <input asp-for="Supplier.Phone"
+            placeholder="Phone" />
+  </div>
+  <input type="submit" />
+</form>
+```
+
+But you will see three `null` compiler warnings, as shown in the following output:
+```
+Warning (active) CS8602	Dereference of a possibly null reference. Northwind.Web C:\cs12dotnet8\PracticalApps\Northwind.Web\Pages\Suppliers.cshtml 34
+Warning (active) CS8602	Dereference of a possibly null reference. Northwind.Web C:\cs12dotnet8\PracticalApps\Northwind.Web\Pages\Suppliers.cshtml 38
+Warning (active) CS8602	Dereference of a possibly null reference. Northwind.Web C:\cs12dotnet8\PracticalApps\Northwind.Web\Pages\Suppliers.cshtml 42
+```
+
+To prevent this, in the Razor Page code-behind file, you should make the `Supplier` property non-nullable (by removing the `?` from `Supplier?`), and then add a statement in the constructor to initialize the `Supplier` property to a new instance to avoid runtime errors and to remove the compiler error about this, as shown in the following code:
+```cs
+// Disallow nulls to avoid null warnings in the view.
+[BindProperty]
+public Supplier Supplier { get; set; }
+
+public SuppliersModel(NorthwindContext db)
+{
+  _db = db;
+
+  // Initialize the Supplier property to avoid compile error 
+  // and potential errors at runtime.
+  Supplier = new();
+}
+```
+
+> **Warning!** If you just set the `Supplier` property to `= null!;` to remove the compiler error, then runtime errors could still occur whenever the property actually is `null`.
+
+# Page 694 - Exercise 13.3 – Enabling HTTP/3 and request decompression support
+
+> Thanks to [Phil Edmunds](https://github.com/Pip1987) for raising this [issue on January 20, 2024](https://github.com/markjprice/cs12dotnet8/issues/15) and to [RTD](https://github.com/RTDMakler) for discovering why Kestrel adds the HTTP/3 header but Chrome does not show it using HTTP/3 and a link to a work around on March 10, 2024. 
+
+This exercise is about enabling HTTP/3 and testing it. The following online page has step-by-step instructions with a localhost-hosted website: 
+https://github.com/markjprice/cs12dotnet8/blob/main/docs/ch13-enabling-http3.md
+
+Unfortunately, "Browsers don't allow self-signed certificates on HTTP/3, such as the Kestrel development certificate", as described here: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http3#localhost-testing
+
+The official documentation does not show a work around because Microsoft decided the steps are too difficult. You can read about the issue here if you want to try the complex workaround: https://github.com/dotnet/AspNetCore.Docs/issues/23700. RTD wrote more detailed instructions that you can read here: https://github.com/markjprice/cs12dotnet8/issues/15#issuecomment-1987353759.
+
+In the next edition, I will add a note about this and remove the step-by-step instructions to try to test it. 
+
+# Page 714 - Route constraints
+
+At the top of the page, I wrote, "Use colons to separate multiple constraints, as shown in the following example:"
+```cs
+[Route("employees/{years:int:minlength(3)}")]
+public Employees[] GetLoyalEmployees(int years)
+```
+
+But `minlength` is for checking the minimum length of a `string`, not the size of an `int`. The example should be as shown in the following code:
+```cs
+[Route("employees/{years:int:min(3)}")]
+public Employees[] GetLoyalEmployees(int years)
+```
+# Appendix - Page 1 - Exercise 1.1 – Test your knowledge
+
+> Thanks to Ikarmus in the book's Discord channel for raising this issue.
+
+In question 1, I wrote "Interactive Development Environment (IDE)". This should be "Integrated Development Environment (IDE)".
